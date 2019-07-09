@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SYSTEMS REQUEST BUREAU OF STREET SERVICES DEPARTMENT OF PUBLIC WORKS</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!--<SCRIPT language="javascript">
+        document.designMode = 'on';
+    </SCRIPT>-->
+</head>
+
+<body background="images/bg-01.jpg" onload="createTable()">
+
+    <span class="title">
+        <img src="images/bss_logo_transparent.png" class="center">
+        <h2 class="center" style = "font-family:georgia,garamond"><i>SYSTEMS REQUEST</i></h2>
+        <h2 class="center" style = "font-family:georgia,garamond"><i>BUREAU OF STREET SERVICES</i></h2>
+        <h2 class="center" style = "font-family:georgia,garamond"><i>DEPARTMENT OF PUBLIC WORKS</i></h2>
+    </span>
+    <hr class="line">
+
+    <!-- First Section -->
+    <table>
+        <tr>
+            <td><label class="labelAdjust">SYSTEMS REQ. NO.:</label></td>
+            <td><label>ORDER TYPE:</label></td>
+            <td><label>DATE PREPARED</label></td>
+            <td><label>PREPARED BY:</label></td>
+        </tr>
+        <tr>
+
+            <td><input class="inputControl" type="text" id="demo" onclick="myFunction()"></td>
+            <!-- <td><select name="getOrderType" id="orderOptions" class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td> -->
+            <?php
+
+                mysql_connect('localhost', 'root', 'Newuser1');
+                mysql_select_db('Procurement');
+
+                $sql = "SELECT * FROM ORDERS";
+                $result = mysql_query($sql);
+
+                echo "<select name='id'>";
+                while ($row = mysql_fetch_array($result)) {
+                    echo "<option value='" . $row['id'] . "'>" . $row['id'] . "</option>";
+                }
+                echo "</select>";
+
+            ?>
+
+                <td>
+                    <input class="inputControl" type="date" id="today">
+                </td>
+                <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+                </td>
+        </tr>
+        <tr>
+            <td><label>REQUESTING DIV:</label></td>
+            <td><label>VENDOR:</label></td>
+            <td><label>VENDOR CONTACT:</label></td>
+        </tr>
+        <tr>
+            <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+            <td><input class="inputControl" type="text" size="20px"></td>
+            <td><input class="inputControl" type="text" size="20px"></td>
+        </tr>
+        <tr>
+            <td><label>QUOTE NO.:</label></td>
+            <td><label>QUOTE DATE:</label></td>
+            <td><label>VOL DISC</label></td>
+            <td><label>QUOTE AMOUNT:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="text"></td>
+            <td><input class="inputControl" type="date" id="today"></td>
+            <td><input class="inputControl" type="checkbox" name="checkbox1" value="1"></td>
+            <td><input class="inputControl" type="text"></td>
+        </tr>
+    </table>
+    <hr class="line">
+
+    <!-- Second Section -->
+    <table>
+        <tr>
+            <td><label>REQUEST AND SHIPPING CONTACT: </label></td>
+            <td>
+                <label> </label>
+            </td>
+            <td><label>PHONE NO.:</label></td>
+        </tr>
+        <tr>
+            <td><select class="inputControl" name="input" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+            <td><select class="inputControl" type="text" id="today">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <h5 class="center">SHIP TO: BUREAU OF STREET SERVICES, SYSTEMS SECTION, 1149 S. BROADWAY, ROOM 350, L. A., CA 90015
+    </h5>
+    <hr class="line">
+
+    <!-- Third Section -->
+    <table class="center">
+        <tr>
+            <td><label>REQUEST:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="text"></td>
+        </tr>
+        <tr>
+            <td><label>DESCRIPTION:</label></td>
+        </tr>
+    </table>
+    <!--Editable Table -->
+    <div>
+        <p>
+            <input type="button" id="addRow" value="Add New Row" onclick="addRow()" />
+        </p>
+
+        <!--THE CONTAINER WHERE WE'll ADD THE DYNAMIC TABLE-->
+        <div id="cont"></div>
+
+        <!--<p><input type="button" id="bt" value="Sumbit Data" onclick="sumbit()" /></p>-->
+    </div>
+    <hr class="line">
+
+    <!-- Fourth Section -->
+    <table>
+        <tr>
+            <td><label>SYSTEMS REQ. APPROVED BY:</label></td>
+            <td><label>DATE:</label></td>
+            <td><label>REQUESTER:</label></td>
+            <!--<td><label>DATE:</label></td> -->
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="text"></td>
+            <td><input class="inputControl" type="date" id="today"></td>
+            <td><input class="inputControl" type="text"></td>
+            <!--<td><input class="inputControl" type="date" id="today"></td>-->
+        </tr>
+        <tr>
+            <td><label>DATE:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="date" id="today"></td>
+        </tr>
+        <tr>
+            <td><label>REQUEST APPROVED BY: (IF APPLICABLE)</label></td>
+            <td><label>DATE:</label></td>
+            <td><label>SYSTEMS REQ. NO.:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="text"></td>
+            <td><input class="inputControl" type="date" id="today"></td>
+            <td><input class="inputControl" type="text"></td>
+        </tr>
+    </table>
+    <hr class="line">
+
+    <!-- Fifth Section -->
+    <table>
+        <h3 style="text-align:center;">--- FOR FMD USE ONLY--- </h3>
+        <tr>
+            <td><label>AVAILABILITY OF FUNDS CONFIRMED BY:</label></td>
+            <td><label>DATE:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="text"></td>
+            <td><input class="inputControl" type="date" id="today"></td>
+        </tr>
+        <tr>
+            <td>
+                <h4 class="center">TO FMD:</h4>
+            </td>
+            <td>
+                <h4>
+                    PLEASE ENTER PURCHASE ORDER DATE, PURCHASE ORDER NO., AND TOTAL COST BELOW, AND PROVIDE SYSTEMS WITH PURCHASE ORDER INFO.
+                </h4>
+            </td>
+        </tr>
+        <tr>
+            <td><label>P.O. DATE:</label></td>
+            <td><label>P.O. NO:</label></td>
+            <td><label>TOTAL COST:</label></td>
+        </tr>
+        <tr>
+            <td><input class="inputControl" type="date" id="today"></td>
+            <td><input class="inputControl" type="text"></td>
+            <td><input class="inputControl" type="text"></td>
+        </tr>
+    </table>
+    <hr class="line">
+
+    <!-- Sixth Section -->
+    <table class="center">
+        <h4 style="text-align:center;">TO ITS:</h4>
+        <h4 style="text-align:center;">
+            PLEASE ENTER MMS W.O. NO., ACCOUNT NO., ORG NO., AND TASK NO.
+        </h4>
+        <tr>
+            <td><label>MMS W.O. NO.:</label></td>
+            <td> <label>ACCOUNT NO.:</label></td>
+            <td><label>ORG. NO.:</label></td>
+            <td> <label>TASK NO.:</label></td>
+        </tr>
+        <tr>
+            <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+            <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+            <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+            <td><select class="inputControl" type="text">
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                    <option>null</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <hr class="line">
+
+    <!-- Seventh Section -->
+    <table class="center">
+        <tr>
+            <td>
+                <h4 style="text-align:center;">COMMENTS:</h4>
+            </td>
+        </tr>
+        <tr>
+            <td><textarea class="inputControl" name="message" placeholder="Your message
+                            here..."></textarea></td>
+        </tr>
+    </table>
+
+    <div>
+        <h4 style="text-align:center;">
+            PRForm Updated: 03/21/2019 Prepared by Vrezh Khalatyan
+        </h4>
+    </div>
+    <script>
+        function addRow(tableID) {
+            // Get a reference to the table
+            let tableRef = document.getElementById(tableID);
+
+            // Insert a row at the end of the table
+            let newRow = tableRef.insertRow(-1);
+
+            // Insert a cell in the row at index 0
+            let newCell = newRow.insertCell(0);
+
+            // Append a text node to the cell
+            let newText = document.createTextNode('New bottom row');
+            newCell.appendChild(newText);
+        }
+
+        // Call addRow() with the table's ID
+        addRow('responstable');
+    </script>
+</body>
+<script>
+    // ARRAY FOR HEADER.
+    var arrHead = new Array();
+    arrHead = ['', 'ITEM NO.', 'ITEM', 'QTY', 'UNIT COST', 'TOTAL COST + TAX']; // SIMPLY ADD OR REMOVE VALUES IN THE ARRAY FOR TABLE HEADERS.
+
+    // FIRST CREATE A TABLE STRUCTURE BY ADDING A FEW HEADERS AND
+    // ADD THE TABLE TO YOUR WEB PAGE.
+    function createTable() {
+        var empTable = document.createElement('table');
+        empTable.setAttribute('id', 'empTable'); // SET THE TABLE ID.
+
+        var tr = empTable.insertRow(-1);
+
+        for (var h = 0; h < arrHead.length; h++) {
+            var th = document.createElement('th'); // TABLE HEADER.
+            th.innerHTML = arrHead[h];
+            tr.appendChild(th);
+        }
+
+        var div = document.getElementById('cont');
+        div.appendChild(empTable); // ADD THE TABLE TO YOUR WEB PAGE.
+    }
+
+    // ADD A NEW ROW TO THE TABLE.s
+    function addRow() {
+        var empTab = document.getElementById('empTable');
+
+        var rowCnt = empTab.rows.length; // GET TABLE ROW COUNT.
+        var tr = empTab.insertRow(rowCnt); // TABLE ROW.
+        tr = empTab.insertRow(rowCnt);
+
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td'); // TABLE DEFINITION.
+            td = tr.insertCell(c);
+
+            if (c == 0) { // FIRST COLUMN.
+                // ADD A BUTTON.
+                var button = document.createElement('input');
+
+                // SET INPUT ATTRIBUTE.
+                button.setAttribute('type', 'button');
+                button.setAttribute('value', 'Remove');
+
+                // ADD THE BUTTON's 'onclick' EVENT.
+                button.setAttribute('onclick', 'removeRow(this)');
+
+                td.appendChild(button);
+            } else {
+                // CREATE AND ADD TEXTBOX IN EACH CELL.
+                var ele = document.createElement('input');
+                ele.setAttribute('type', 'text');
+                ele.setAttribute('value', '');
+
+                td.appendChild(ele);
+            }
+        }
+    }
+
+    // DELETE TABLE ROW.
+    function removeRow(oButton) {
+        var empTab = document.getElementById('empTable');
+        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // BUTTON -> TD -> TR.
+    }
+
+    // EXTRACT AND SUBMIT TABLE DATA.
+    function sumbit() {
+        var myTab = document.getElementById('empTable');
+        var values = new Array();
+
+        // LOOP THROUGH EACH ROW OF THE TABLE.
+        for (row = 1; row < myTab.rows.length - 1; row++) {
+            for (c = 0; c < myTab.rows[row].cells.length; c++) { // EACH CELL IN A ROW.
+
+                var element = myTab.rows.item(row).cells[c];
+                if (element.childNodes[0].getAttribute('type') == 'text') {
+                    values.push("'" + element.childNodes[0].value + "'");
+                }
+            }
+        }
+        console.log(values);
+    }
+</script>
+
+</html>
